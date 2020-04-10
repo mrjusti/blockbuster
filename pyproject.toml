@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "blockbuster"
+version = "0.1.0"
+description = ""
+authors = ["Hernán Kleiman <hernan.kleiman@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+django = "^3.0.5"
+requests = "^2.23.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^4.6"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
