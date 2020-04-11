@@ -1,5 +1,3 @@
-import requests
-
 from movies.domain.models import Movies, People, MovieId, MovieIds, Character, Movie, MovieRepository
 from movies.infrastructure.clients import GhibliClient
 
