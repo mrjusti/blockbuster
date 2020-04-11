@@ -5,15 +5,16 @@ from unittest.mock import MagicMock
 from movies.application.transformers import MoviesJsonTransformer
 from movies.application.use_cases import GetMovies
 from movies.domain.services import GetMovies as GetMoviesService
+from movies.infrastructure.repositories import GhibliMovieRepository
 
 
 class MoviesTestCases(unittest.TestCase):
 
+    ghibli_client: object
     movies_repository: object
 
     def movie_repository_mock(self):
         if not hasattr(self, 'movie_repository'):
-            print('not exist')
             self.movie_repository = MagicMock(name='movie_repository')
 
         return self.movie_repository
@@ -25,3 +26,19 @@ class MoviesTestCases(unittest.TestCase):
         get_movies_services = GetMoviesService(self.movie_repository_mock())
 
         return GetMovies(get_movies_services, MoviesJsonTransformer())
+
+    def ghibli_client_mock(self):
+        if not hasattr(self, 'ghibli_client'):
+            self.ghibli_client = MagicMock(name='ghibli_client')
+
+        return self.ghibli_client
+
+    def ghibli_client_mock__movies(self, response: Any):
+        self.ghibli_client_mock().movies.return_value = response
+
+    def ghibli_client_mock__people(self, response: Any):
+        self.ghibli_client_mock().people.return_value = response
+
+    def ghibli_movie_repository(self):
+
+        return GhibliMovieRepository(self.ghibli_client_mock())

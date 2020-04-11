@@ -7,6 +7,12 @@ class Movies:
     def __init__(self, movies: list):
         self.movies = movies
 
+    def __eq__(self, other):
+        is_instance_of = isinstance(other, Movies)
+        is_content_eq = self.movies == other.movies
+
+        return is_instance_of and is_content_eq
+
 
 class Movie:
     people: People
@@ -29,12 +35,27 @@ class Movie:
         self.title = title
         self.people = people
 
+    def __eq__(self, other):
+        is_instance_of = isinstance(other, Movie)
+        is_content_eq = self.title == other.title and self.description == other.description \
+                        and self.director == other.director and self.producer == other.producer \
+                        and self.release_date == other.release_date and self.rt_score == other.rt_score \
+                        and self.people == other.people
+
+        return is_instance_of and is_content_eq
+
 
 class MovieId:
     movie_id: str
 
     def __init__(self, movie_id: str):
         self.movie_id = movie_id
+
+    def __eq__(self, other):
+        is_instance_of = isinstance(other, MovieId)
+        is_content_eq = self.movie_id == other.movie_id
+
+        return is_instance_of and is_content_eq
 
 
 class MovieIds:
@@ -45,6 +66,12 @@ class MovieIds:
 
     def raw(self) -> list:
         return [movie_id.movie_id for movie_id in self.movie_ids]
+
+    def __eq__(self, other):
+        is_instance_of = isinstance(other, MovieIds)
+        is_content_eq = self.movie_ids == other.movie_ids
+
+        return is_instance_of and is_content_eq
 
 
 class People:
@@ -57,6 +84,12 @@ class People:
         characters = [character for character in self.people if movie_id.movie_id in character.movie_ids.raw()]
 
         return People(characters)
+
+    def __eq__(self, other):
+        is_instance_of = isinstance(other, People)
+        is_content_eq = self.people == other.people
+
+        return is_instance_of and is_content_eq
 
 
 class Character:
@@ -77,6 +110,15 @@ class Character:
         self.gender = gender
         self.name = name
         self.character_id = character_id
+
+    def __eq__(self, other):
+        is_instance_of = isinstance(other, Character)
+        is_content_eq = self.name == other.name and self.character_id == other.character_id \
+                        and self.movie_ids == other.movie_ids and self.eye_color == other.eye_color \
+                        and self.hair_color == other.hair_color and self.age == other.age \
+                        and self.gender == other.gender
+
+        return is_instance_of and is_content_eq
 
 
 class MovieRepository:
