@@ -31,6 +31,7 @@ run:
 lint:
 	poetry run flake8 --exclude=.tox
 	poetry run mypy blockbuster
+	poetry run bento check --all
 
 test: clean-pyc
     poetry py.test --verbose --color=yes $(TEST_PATH)
