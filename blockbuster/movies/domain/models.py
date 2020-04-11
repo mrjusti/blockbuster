@@ -37,10 +37,13 @@ class Movie:
 
     def __eq__(self, other):
         is_instance_of = isinstance(other, Movie)
-        is_content_eq = self.title == other.title and self.description == other.description \
-                        and self.director == other.director and self.producer == other.producer \
-                        and self.release_date == other.release_date and self.rt_score == other.rt_score \
-                        and self.people == other.people and self.movie_id == other.movie_id
+        is_main_eq = self.title == other.title and self.description == other.description
+        is_prod_eq = self.producer == other.producer and self.director == other.director
+        is_rel_eq = self.release_date == other.release_date
+        is_rt_eq = self.rt_score == other.rt_score
+        is_people_eq = self.people == other.people
+        is_id_eq = self.movie_id == other.movie_id
+        is_content_eq = is_main_eq and is_prod_eq and is_rel_eq and is_rt_eq and is_people_eq and is_id_eq
 
         return is_instance_of and is_content_eq
 
@@ -113,10 +116,12 @@ class Character:
 
     def __eq__(self, other):
         is_instance_of = isinstance(other, Character)
-        is_content_eq = self.name == other.name and self.character_id == other.character_id \
-                        and self.movie_ids == other.movie_ids and self.eye_color == other.eye_color \
-                        and self.hair_color == other.hair_color and self.age == other.age \
-                        and self.gender == other.gender
+        is_main_eq = self.name == other.name and self.character_id == other.character_id
+        is_movies_eq = self.movie_ids == other.movie_ids
+        is_body_eq = self.eye_color == other.eye_color and self.hair_color == other.hair_color
+        is_age_eq = self.age == other.age
+        is_gender_eq = self.gender == other.gender
+        is_content_eq = is_main_eq and is_movies_eq and is_body_eq and is_age_eq and is_gender_eq
 
         return is_instance_of and is_content_eq
 
