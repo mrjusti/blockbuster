@@ -2,7 +2,6 @@ from __future__ import annotations
 
 
 class Movies:
-
     movies: list
 
     def __init__(self, movies: list):
@@ -78,3 +77,9 @@ class Character:
         self.gender = gender
         self.name = name
         self.character_id = character_id
+
+
+class MovieRepository:
+
+    def find_all(self) -> Movies:
+        pass

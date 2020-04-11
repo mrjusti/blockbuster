@@ -1,12 +1,11 @@
-from movies.domain.models import Movies
-from movies.domain.repositories import MoviesRepository
+from movies.domain.models import Movies, MovieRepository
 
 
 class GetMovies:
-    movies_repository: MoviesRepository
+    movie_repository: MovieRepository
 
-    def __init__(self, movies_repository: MoviesRepository):
-        self.movies_repository = movies_repository
+    def __init__(self, movie_repository: MovieRepository):
+        self.movie_repository = movie_repository
 
     def __call__(self) -> Movies:
-        return self.movies_repository.find_all()
+        return self.movie_repository.find_all()

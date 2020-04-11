@@ -1,11 +1,10 @@
 import requests
 
-from movies.domain.models import Movies, People, MovieId, MovieIds, Character, Movie
-from movies.domain.repositories import MoviesRepository
+from movies.domain.models import Movies, People, MovieId, MovieIds, Character, Movie, MovieRepository
 from movies.infrastructure.clients import GhibliClient
 
 
-class GhibliMoviesRepository(MoviesRepository):
+class GhibliMovieRepository(MovieRepository):
     client: GhibliClient
 
     def __init__(self, client: GhibliClient):
