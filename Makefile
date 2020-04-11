@@ -12,14 +12,13 @@ HOST=127.0.0.1
 TEST_PATH=./
 
 clean-pyc:
-	find . -name '*.pyc' -exec rm --force {} +
-	find . -name '*.pyo' -exec rm --force {} +
-	name '*~' -exec rm --force  {}
+	find . -name '*.pyc' -exec rm -rf {} +
+	find . -name '*.pyo' -exec rm -rf {} +
 
 clean-build:
-	rm --force --recursive build/
-	rm --force --recursive dist/
-	rm --force --recursive *.egg-info
+	rm -rf build/
+	rm -rf dist/
+	rm -rf *.egg-info
 
 build:
 	poetry install
@@ -34,4 +33,4 @@ lint:
 	poetry run bento check --all
 
 test: clean-pyc
-    poetry py.test --verbose --color=yes $(TEST_PATH)
+	poetry run pytest --verbose --color=yes $(TEST_PATH)

@@ -65,10 +65,10 @@ class Character:
     character_id: str
     name: str
     gender: str
-    age: str
+    age: int
     hair_color: str
 
-    def __init__(self, character_id: str, name: str, gender: str, age: str, eye_color: str, hair_color: str,
+    def __init__(self, character_id: str, name: str, gender: str, age: int, eye_color: str, hair_color: str,
                  movie_ids: MovieIds):
         self.movie_ids = movie_ids
         self.eye_color = eye_color
