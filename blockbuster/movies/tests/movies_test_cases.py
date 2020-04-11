@@ -1,3 +1,4 @@
+import os
 import unittest
 from typing import Any
 from unittest.mock import MagicMock
@@ -5,11 +6,13 @@ from unittest.mock import MagicMock
 from movies.application.transformers import MoviesJsonTransformer
 from movies.application.use_cases import GetMovies
 from movies.domain.services import GetMovies as GetMoviesService
+from movies.infrastructure.decorators import CacheMovieRepositoryDecorator
 from movies.infrastructure.repositories import GhibliMovieRepository
+
+os.environ['DJANGO_SETTINGS_MODULE'] = 'blockbuster.settings.test'
 
 
 class MoviesTestCases(unittest.TestCase):
-
     ghibli_client: object
     movies_repository: object
 
@@ -42,3 +45,7 @@ class MoviesTestCases(unittest.TestCase):
     def ghibli_movie_repository(self):
 
         return GhibliMovieRepository(self.ghibli_client_mock())
+
+    def cache_movie_repository_decorator(self):
+
+        return CacheMovieRepositoryDecorator(self.movie_repository_mock(), 'test_blockbuster')

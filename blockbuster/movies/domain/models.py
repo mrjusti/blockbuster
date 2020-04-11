@@ -40,7 +40,7 @@ class Movie:
         is_content_eq = self.title == other.title and self.description == other.description \
                         and self.director == other.director and self.producer == other.producer \
                         and self.release_date == other.release_date and self.rt_score == other.rt_score \
-                        and self.people == other.people
+                        and self.people == other.people and self.movie_id == other.movie_id
 
         return is_instance_of and is_content_eq
 
