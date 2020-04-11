@@ -9,6 +9,7 @@ class GhibliMovieRepository(MovieRepository):
         self.client = client
 
     def find_all(self) -> Movies:
+
         people = People(list(map(_character_factory, self.client.people())))
         movies = Movies(list(map(lambda movie: _movie_factory(movie, people), self.client.movies())))
 
@@ -16,7 +17,7 @@ class GhibliMovieRepository(MovieRepository):
 
 
 def _character_factory(character: dict):
-    films_ids = list(map(lambda film: MovieId(film.split('/')[-1]), character['films']))
+    films_ids = [MovieId(film.split('/')[-1]) for film in character['films']]
     movie_ids = MovieIds(films_ids)
     return Character(character['id'], character['name'], character['gender'], character['age'],
                      character['eye_color'], character['hair_color'], movie_ids)

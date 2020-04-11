@@ -44,7 +44,7 @@ class MovieIds:
         self.movie_ids = movie_ids
 
     def raw(self) -> list:
-        return list(map(lambda movie_id: movie_id.movie_id, self.movie_ids))
+        return [movie_id.movie_id for movie_id in self.movie_ids]
 
 
 class People:
