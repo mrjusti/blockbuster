@@ -1,26 +1,43 @@
-manage dependencies
+# Blockbuster
 
-https://python-poetry.org/
+API that connect with **Studio Ghibli** and return a list of all their movies with all the people that appear in each.
 
-# install
-poetry install
-poetry run python blockbuster/manage.py migrate
-
-# run server
-poetry run python blockbuster/manage.py runserver
+![Cars!!!](./doc/blockbuster.png "Blockbuster")
 
 
 
-// To Do
-- [X] try and catch
-- [X] middleware proper message and http status handler
-- [X] tests infrastructure
-- [X] tests acceptance
-- [X] PEP8
-- [X] lint
-- [X] Makefile
-- [ ] typed collections for movies list and people
-- [ ] write the README.md and explain what I did
-- [ ] shared type
-- [X] improve acceptance test and infrastructure
-- [ ] coverage
+### Requirements
+
+- `Poetry` python packaging and dependency management [https://python-poetry.org/](https://python-poetry.org/)
+- `Git` version control tool
+
+### Installation
+
+Run this command to bring up the environment
+
+```bash
+> make build
+```
+
+### Webserver
+
+To run the webserver, only write this command in your terminal
+
+```bash
+> make run
+```
+
+### Test and Coverage
+
+To run the test
+
+```bash
+> make test
+```
+
+and for the coverage
+
+```bash
+> make coverage
+```
+

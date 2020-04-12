@@ -17,6 +17,6 @@ class CacheMovieRepositoryDecorator(MovieRepository):
             return movies
 
         movies = self.movie_repository.find_all()
-        cache.set(f'{self.prefix}.movie_repository.find_all', movies, timeout=180)
+        cache.set(f'{self.prefix}.movie_repository.find_all', movies, timeout=60)
 
         return movies
