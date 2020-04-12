@@ -1,0 +1,198 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "array",
+    "title": "The Root Schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "items": {
+        "$id": "#/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "description": "An explanation about the purpose of this instance.",
+        "default": {},
+        "examples": [
+            {
+                "locations": [
+                    "https://ghibliapi.herokuapp.com/locations/"
+                ],
+                "producer": "Isao Takahata",
+                "people": [
+                    "https://ghibliapi.herokuapp.com/people/"
+                ],
+                "release_date": "1986",
+                "title": "Castle in the Sky",
+                "url": "https://ghibliapi.herokuapp.com/films/2baf70d1-42bb-4437-b551-e5fed5a87abe",
+                "species": [
+                    "https://ghibliapi.herokuapp.com/species/af3910a6-429f-4c74-9ad5-dfe1c4aa04f2"
+                ],
+                "rt_score": "95",
+                "vehicles": [
+                    "https://ghibliapi.herokuapp.com/vehicles/"
+                ],
+                "director": "Hayao Miyazaki",
+                "d": "2baf70d1-42bb-4437-b551-e5fed5a87abe",
+                "description": "The orphan Sheeta inherited a mysterious crystal that links her to the mythical sky-kingdom of Laputa. With the help of resourceful Pazu and a rollicking band of sky pirates, she makes her way to the ruins of the once-great civilization. Sheeta and Pazu must outwit the evil Muska, who plans to use Laputas science to make himself ruler of the world."
+            }
+        ],
+        "required": [
+            "id",
+            "title",
+            "description",
+            "director",
+            "producer",
+            "release_date",
+            "rt_score",
+            "people"
+        ],
+        "properties": {
+            "id": {
+                "$id": "#/items/properties/d",
+                "type": "string",
+                "title": "The ID Schema",
+                "description": "Unique value for the movie.",
+                "default": "",
+                "examples": [
+                    "2baf70d1-42bb-4437-b551-e5fed5a87abe"
+                ]
+            },
+            "title": {
+                "$id": "#/items/properties/title",
+                "type": "string",
+                "title": "The Title Schema",
+                "description": "The title of the movie.",
+                "default": "",
+                "examples": [
+                    "Castle in the Sky"
+                ]
+            },
+            "description": {
+                "$id": "#/items/properties/description",
+                "type": "string",
+                "title": "The Description Schema",
+                "description": "The description of the movie.",
+                "default": "",
+                "examples": [
+                    "The orphan Sheeta inherited a mysterious crystal that links her to the mythical sky-kingdom of Laputa. With the help of resourceful Pazu and a rollicking band of sky pirates, she makes her way to the ruins of the once-great civilization. Sheeta and Pazu must outwit the evil Muska, who plans to use Laputas science to make himself ruler of the world."
+                ]
+            },
+            "director": {
+                "$id": "#/items/properties/director",
+                "type": "string",
+                "title": "The Director Schema",
+                "description": "The director of the movie.",
+                "default": "",
+                "examples": [
+                    "Hayao Miyazaki"
+                ]
+            },
+            "producer": {
+                "$id": "#/items/properties/producer",
+                "type": "string",
+                "title": "The Producer Schema",
+                "description": "The producer of the movie.",
+                "default": "",
+                "examples": [
+                    "Isao Takahata"
+                ]
+            },
+            "release_date": {
+                "$id": "#/items/properties/release_date",
+                "type": "string",
+                "title": "The Release_date Schema",
+                "description": "The release data of the movie.",
+                "default": "",
+                "examples": [
+                    "1986"
+                ]
+            },
+            "rt_score": {
+                "$id": "#/items/properties/rt_score",
+                "type": "string",
+                "title": "The Rt_score Schema",
+                "description": "The rating score of the movie.",
+                "default": "",
+                "examples": [
+                    "95"
+                ]
+            },
+            "people": {
+                "$id": "#/items/properties/people",
+                "type": "array",
+                "title": "The People Schema",
+                "description": "The characters involve in the movie.",
+                "default": [],
+                "items": {
+                    "$id": "#/items/properties/people/items",
+                    "type": "string",
+                    "title": "The Items Schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "https://ghibliapi.herokuapp.com/people/"
+                    ]
+                }
+            },
+            "species": {
+                "$id": "#/items/properties/species",
+                "type": "array",
+                "title": "The Species Schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": [],
+                "items": {
+                    "$id": "#/items/properties/species/items",
+                    "type": "string",
+                    "title": "The Items Schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "https://ghibliapi.herokuapp.com/species/af3910a6-429f-4c74-9ad5-dfe1c4aa04f2"
+                    ]
+                }
+            },
+            "locations": {
+                "$id": "#/items/properties/locations",
+                "type": "array",
+                "title": "The Locations Schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": [],
+                "items": {
+                    "$id": "#/items/properties/locations/items",
+                    "type": "string",
+                    "title": "The Items Schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "https://ghibliapi.herokuapp.com/locations/"
+                    ]
+                }
+            },
+            "vehicles": {
+                "$id": "#/items/properties/vehicles",
+                "type": "array",
+                "title": "The Vehicles Schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": [],
+                "items": {
+                    "$id": "#/items/properties/vehicles/items",
+                    "type": "string",
+                    "title": "The Items Schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "https://ghibliapi.herokuapp.com/vehicles/"
+                    ]
+                }
+            },
+            "url": {
+                "$id": "#/items/properties/url",
+                "type": "string",
+                "title": "The Url Schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": "",
+                "examples": [
+                    "https://ghibliapi.herokuapp.com/films/2baf70d1-42bb-4437-b551-e5fed5a87abe"
+                ]
+            }
+        }
+    }
+}

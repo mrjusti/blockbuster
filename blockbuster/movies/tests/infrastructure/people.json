@@ -1,0 +1,137 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "array",
+    "title": "The Root Schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "items": {
+        "$id": "#/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "description": "An explanation about the purpose of this instance.",
+        "default": {},
+        "examples": [
+            {
+                "gender": "Male",
+                "eye_color": "Brown",
+                "age": "late teens",
+                "id": "ba924631-068e-4436-b6de-f3283fa848f0",
+                "url": "https://ghibliapi.herokuapp.com/people/ba924631-068e-4436-b6de-f3283fa848f0",
+                "species": "https://ghibliapi.herokuapp.com/species/af3910a6-429f-4c74-9ad5-dfe1c4aa04f2",
+                "name": "Ashitaka",
+                "hair_color": "Brown",
+                "films": [
+                    "https://ghibliapi.herokuapp.com/films/0440483e-ca0e-4120-8c50-4c8cd9b965d6"
+                ]
+            }
+        ],
+        "required": [
+            "id",
+            "name",
+            "gender",
+            "age",
+            "eye_color",
+            "hair_color",
+            "films"
+        ],
+        "properties": {
+            "id": {
+                "$id": "#/items/properties/id",
+                "type": "string",
+                "title": "The Id Schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": "",
+                "examples": [
+                    "ba924631-068e-4436-b6de-f3283fa848f0"
+                ]
+            },
+            "name": {
+                "$id": "#/items/properties/name",
+                "type": "string",
+                "title": "The Name Schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": "",
+                "examples": [
+                    "Ashitaka"
+                ]
+            },
+            "gender": {
+                "$id": "#/items/properties/gender",
+                "type": "string",
+                "title": "The Gender Schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": "",
+                "examples": [
+                    "Male"
+                ]
+            },
+            "age": {
+                "$id": "#/items/properties/age",
+                "type": "string",
+                "title": "The Age Schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": "",
+                "examples": [
+                    "late teens"
+                ]
+            },
+            "eye_color": {
+                "$id": "#/items/properties/eye_color",
+                "type": "string",
+                "title": "The Eye_color Schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": "",
+                "examples": [
+                    "Brown"
+                ]
+            },
+            "hair_color": {
+                "$id": "#/items/properties/hair_color",
+                "type": "string",
+                "title": "The Hair_color Schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": "",
+                "examples": [
+                    "Brown"
+                ]
+            },
+            "films": {
+                "$id": "#/items/properties/films",
+                "type": "array",
+                "title": "The Films Schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": [],
+                "items": {
+                    "$id": "#/items/properties/films/items",
+                    "type": "string",
+                    "title": "The Items Schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "https://ghibliapi.herokuapp.com/films/0440483e-ca0e-4120-8c50-4c8cd9b965d6"
+                    ]
+                }
+            },
+            "species": {
+                "$id": "#/items/properties/species",
+                "type": "string",
+                "title": "The Species Schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": "",
+                "examples": [
+                    "https://ghibliapi.herokuapp.com/species/af3910a6-429f-4c74-9ad5-dfe1c4aa04f2"
+                ]
+            },
+            "url": {
+                "$id": "#/items/properties/url",
+                "type": "string",
+                "title": "The Url Schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": "",
+                "examples": [
+                    "https://ghibliapi.herokuapp.com/people/ba924631-068e-4436-b6de-f3283fa848f0"
+                ]
+            }
+        }
+    }
+}
