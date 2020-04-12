@@ -1,13 +1,21 @@
-import os
+from http import HTTPStatus
 
-from django.test import TestCase
+import django
+
+from django.test import Client
 from django.urls import reverse
+from movies.tests.movies_test_cases import MoviesTestCases
 
-os.environ['DJANGO_SETTINGS_MODULE'] = 'blockbuster.settings.test'
 
-
-class TestGetMovies(TestCase):
+class TestGetMovies(MoviesTestCases):
 
     def test_get_movies(self):
-        resp = self.client.get(reverse('movies'))
-        self.assertEqual(resp.status_code, 200)
+        # arrange
+        django.setup()
+
+        # act
+        c = Client()
+        resp = c.get(reverse('view_movies'))
+
+        # assert
+        self.assertEqual(HTTPStatus.OK, resp.status_code)
