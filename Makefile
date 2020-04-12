@@ -5,7 +5,7 @@
 #/___,'_/ |\__,_|_| |_|\__, |\___/
 #     |__/             |___/
 
-.PHONY: build run lint tests clean-pyc clean-build
+.PHONY: build run lint tests coverage clean-pyc clean-build
 
 PROJECT := "django"
 HOST=127.0.0.1
@@ -34,3 +34,6 @@ lint:
 
 test: clean-pyc
 	poetry run pytest --verbose --color=yes $(TEST_PATH)
+
+coverage:
+	poetry run pytest --cov=blockbuster --cov-report term-missing

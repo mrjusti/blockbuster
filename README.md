@@ -22,4 +22,5 @@ poetry run python blockbuster/manage.py runserver
 - [ ] typed collections for movies list and people
 - [ ] write the README.md and explain what I did
 - [ ] shared type
-- [ ] improve acceptance test and infrastructure
+- [X] improve acceptance test and infrastructure
+- [ ] coverage
