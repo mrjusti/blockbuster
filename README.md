@@ -12,9 +12,9 @@ poetry run python blockbuster/manage.py runserver
 
 
 // To Do
-- [ ] try and catch
-- [ ] middleware proper message and http status handler
-- [ ] tests infrastructure
+- [X] try and catch
+- [X] middleware proper message and http status handler
+- [X] tests infrastructure
 - [ ] tests acceptance
 - [X] PEP8
 - [X] lint
