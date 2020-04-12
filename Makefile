@@ -28,7 +28,7 @@ run:
 	poetry run python blockbuster/manage.py runserver
 
 lint:
-	poetry run flake8 --exclude=.tox
+	poetry run flake8
 	poetry run mypy blockbuster
 	poetry run bento check --all
 

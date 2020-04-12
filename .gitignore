@@ -70,3 +70,7 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# bento
+.bento/cache
+.bentoignore

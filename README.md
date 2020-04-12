@@ -15,10 +15,11 @@ poetry run python blockbuster/manage.py runserver
 - [X] try and catch
 - [X] middleware proper message and http status handler
 - [X] tests infrastructure
-- [ ] tests acceptance
+- [X] tests acceptance
 - [X] PEP8
 - [X] lint
 - [X] Makefile
 - [ ] typed collections for movies list and people
 - [ ] write the README.md and explain what I did
 - [ ] shared type
+- [ ] improve acceptance test and infrastructure
