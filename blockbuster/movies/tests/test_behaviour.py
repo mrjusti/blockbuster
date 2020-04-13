@@ -25,7 +25,7 @@ class TestGetMovies(MoviesTestCases):
         response = app()
 
         # assert
-        expect = [{'id': movie_id.movie_id, 'title': movie.title, 'description': movie.description,
+        expect = [{'id': movie_id, 'title': movie.title, 'description': movie.description,
                    'director': movie.director,
                    'producer': movie.producer, 'release_date': movie.release_date,
                    'rt_score': movie.rt_score,

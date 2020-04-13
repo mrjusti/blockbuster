@@ -39,10 +39,9 @@ class MoviesDtoTransformer(MoviesTransformer):
 def _movies_to_json(movie: Movie) -> dict:
     people = [_character_to_json(character) for character in movie.people.people]
 
-    return {'id': movie.movie_id.movie_id, 'title': movie.title, 'description': movie.description,
-            'director': movie.director,
-            'producer': movie.producer, 'release_date': movie.release_date,
-            'rt_score': movie.rt_score, 'people': people}
+    return {'id': movie.movie_id, 'title': movie.title, 'description': movie.description, 'director': movie.director,
+            'producer': movie.producer, 'release_date': movie.release_date, 'rt_score': movie.rt_score,
+            'people': people}
 
 
 def _character_to_json(character: Character) -> dict:

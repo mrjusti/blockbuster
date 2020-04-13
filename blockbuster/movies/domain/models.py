@@ -66,21 +66,10 @@ class Movie:
         return is_content_eq
 
 
-class MovieId:
+class MovieId(str):
     """MovieId it is a value object that represent the identifier for a movie."""
 
-    movie_id: str
-
-    def __init__(self, movie_id: str):
-        """Init the MovieId."""
-        self.movie_id = movie_id
-
-    def __eq__(self, other):
-        """Check if two instances of the class are the same.
-
-        We don't check if has the same instance, we actually don't care. If act as a duck, it is a duck.
-        """
-        return self.movie_id == other.movie_id
+    pass
 
 
 class MovieIds:
@@ -94,7 +83,7 @@ class MovieIds:
 
     def raw(self) -> list:
         """Return a list with only the movie_id strings."""
-        return [movie_id.movie_id for movie_id in self.movie_ids]
+        return [movie_id for movie_id in self.movie_ids]
 
     def __eq__(self, other):
         """Check if two instances of the class are the same.
@@ -115,7 +104,7 @@ class People:
 
     def filter_by_movie_id(self, movie_id: MovieId) -> People:
         """Filter the list of Characters returning only the ones that appear in the MovieId given."""
-        characters = [character for character in self.people if movie_id.movie_id in character.movie_ids.raw()]
+        characters = [character for character in self.people if movie_id in character.movie_ids.raw()]
 
         return People(characters)
 
