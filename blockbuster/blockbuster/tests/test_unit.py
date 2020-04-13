@@ -15,7 +15,7 @@ class _FakeError(Exception):
     pass
 
 
-class TestJsonExceptions(unittest.TestCase):
+class TestJsonExceptionsMiddleware(unittest.TestCase):
     """Test the JsonException middleware."""
 
     def test_process_exception_should_return_json_response(self):

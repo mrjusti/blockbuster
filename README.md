@@ -8,15 +8,15 @@ API that connect with **Studio Ghibli** and return a list of all their movies wi
 
 The application use **django** for the framework but it is made with **Hexagonal Architecture** so it is anecdotal which framework use for the domain logic. You can find all the **Application**, **Domain** and **Infrastructure** inside the folder ```blockbuster/movies``` from the ```root``` folder.
 
-You will see that all the test are in the same folder but under the tests folder separated as `behaviour`, `infrastructure` and `unit`.
+You will see that all the test for the package `blockbuster.movies` are separated as `behaviour`, `infrastructure` and `unit` modules.
 
-In the `blockbuster/blockbuster` folder you can find other `tests` forlder, this is because I create a django middleware for a pretty response in case that something when wrong and raise an exception and for the `acceptance` test I use the django's client.
+In the `blockbuster.blockbuster` package you can find more `tests`, this is because I create a django middleware for a pretty response in case that something goes wrong and raise an exception and for the `acceptance` test too because I use the django's client.
 
 ## Entry Point
 
 The entry point is a **get** request to ```/movies/```. It uses the routing and views provided by django.
 
-Inside the `blockbuster.movies.view` you can see that I am calling to the use case in the `application` folder. The view return a `JsonResponse` so it could be used by the front-end as an API. Also there are a middleware that beautify the response in case that an error is raised.
+Inside the `blockbuster.movies.view` module you can see that I am calling to the use case in the `application` package. The view return a `JsonResponse` so it could be used by the front-end as an API. Also there are a middleware that beautify the response in case that an error is raised.
  
 ## Domain-Driven Design
 
@@ -30,7 +30,7 @@ Domain-driven design is predicated on the following goals:
 
 ### application
 
-Here you can find the `use cases` and the `data transformers`, this are the classes that have contact with the **domain layer** 
+Here you can find the `use cases` and the `data transformers`, this are the modules that have contact with the **domain layer** 
 
 ### domain
 
@@ -38,26 +38,26 @@ Here we have the `models` (entities, value objects and repositories contract) an
 
 ### infrastructure
 
-Here we have the `clients`, `decorators` (for eg cache repository decorator) and `repositories` implementation
+Here we have the `clients` and `repositories` implementation modules. You can find `decorators` (for eg cache repository decorator) inside the `repositories` module.
 
 ## django
 
-Related with the framework we can find the `blockbuster.movies.views` and `blockbuster.middleware`, both are need it in order to deliver a response and beautify the exceptions.
+Related with the framework we can find the `blockbuster.movies.views` and `blockbuster.blockbuster.middleware`, both are need it in order to deliver a response and beautify the exceptions.
 
 
 ## Test
 
 ### Behaviour and Unit Tests
 
-This test could be find inside the folder `blockbuster/movies/tests`. This tests has **mock** to **infrastructure** implementation.
+This test could be find inside the package `blockbuster.movies.tests`. This tests **mock** the **infrastructure** implementation, so you can test in a unit way the behaviour of the use cases.
 
 ### Infrastructure Tests
 
-This test could be find inside the folder `blockbuster/movies/tests`. This tests are specific to test that the infrastructure works well. Here you can find a json schema validator in order to be sure that the response from the Ghibli API is right.
+This test could be find inside the package `blockbuster.movies.tests`. This tests are specific to test that the infrastructure works well. Here you can find a json schema validator in order to be sure that the response from the Ghibli API is right.
 
 ### Acceptance Tests
 
-Because I use the **Client** from **django** that help me to make **get** request, these are outside the **movies** folder. You can find them inside the folder `blockbuster/blockbuster/tests` from the root folder.
+Because I use the `Client` from **django** that help me to make `get` request, these are outside the `blockbuster.movies` package. You can find them inside the package `blockbuster.blockbuster.tests`.
 
 ### Coverage
 
