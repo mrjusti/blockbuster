@@ -33,11 +33,11 @@ class MoviesDtoTransformer(MoviesTransformer):
 
     def read(self) -> list:
         """Return a dictionary with the Movies data."""
-        return [_movies_to_json(movie) for movie in self.movies.movies]
+        return [_movies_to_json(movie) for movie in self.movies]
 
 
 def _movies_to_json(movie: Movie) -> dict:
-    people = [_character_to_json(character) for character in movie.people.people]
+    people = [_character_to_json(character) for character in movie.people]
 
     return {'id': movie.movie_id, 'title': movie.title, 'description': movie.description, 'director': movie.director,
             'producer': movie.producer, 'release_date': movie.release_date, 'rt_score': movie.rt_score,

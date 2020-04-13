@@ -6,21 +6,10 @@ Here we can find the entities, value objects and repositories for the applicatio
 from __future__ import annotations
 
 
-class Movies:
+class Movies(list):
     """Contain a list with all the Movie objects."""
 
-    movies: list
-
-    def __init__(self, movies: list):
-        """Init need a list with Movie objects."""
-        self.movies = movies
-
-    def __eq__(self, other):
-        """Check if two instances of the class are the same.
-
-        We don't check if has the same instance, we actually don't care. If act as a duck, it is a duck.
-        """
-        return self.movies == other.movies
+    pass
 
 
 class Movie:
@@ -72,48 +61,20 @@ class MovieId(str):
     pass
 
 
-class MovieIds:
+class MovieIds(list):
     """Contain a list with MovieId."""
 
-    movie_ids: list
-
-    def __init__(self, movie_ids: list):
-        """Init the MovieIds."""
-        self.movie_ids = movie_ids
-
-    def raw(self) -> list:
-        """Return a list with only the movie_id strings."""
-        return [movie_id for movie_id in self.movie_ids]
-
-    def __eq__(self, other):
-        """Check if two instances of the class are the same.
-
-        We don't check if has the same instance, we actually don't care. If act as a duck, it is a duck.
-        """
-        return self.movie_ids == other.movie_ids
+    pass
 
 
-class People:
+class People(list):
     """Object that contain a list of Character."""
-
-    people: list
-
-    def __init__(self, people: list):
-        """Init the people class."""
-        self.people = people
 
     def filter_by_movie_id(self, movie_id: MovieId) -> People:
         """Filter the list of Characters returning only the ones that appear in the MovieId given."""
-        characters = [character for character in self.people if movie_id in character.movie_ids.raw()]
+        characters = [character for character in self if movie_id in character.movie_ids]
 
         return People(characters)
-
-    def __eq__(self, other):
-        """Check if two instances of the class are the same.
-
-        We don't check if has the same instance, we actually don't care. If act as a duck, it is a duck.
-        """
-        return self.people == other.people
 
 
 class Character:
