@@ -1,11 +1,20 @@
-from movies.domain.models import MovieId, People, Movies, MovieIds
-from movies.tests.movies_test_cases import MoviesTestCases
-from movies.tests.stub.models import character_random_with_movie_ids, movie_random_with_movie_id_and_people
+"""Unit tests.
+
+There are some classes that required to have a unit test given an specific logic that made in the behaviour test do it properly.
+"""
+
+from django.core.cache import cache
+
+from movies.domain.models import MovieId, People, MovieIds, Movies
+from movies.tests.stub import character_random_with_movie_ids, movie_random_with_movie_id_and_people
+from movies.tests.test_cases import MoviesTestCases
 
 
 class TestGhibliMovieRepository(MoviesTestCases):
+    """Test the GhibliMovieRepository."""
 
     def test_find_all(self):
+        """Test that the method find_all return what it has to return."""
         # arrange
         movie_id = MovieId('123')
         character = character_random_with_movie_ids(MovieIds([movie_id]))
@@ -30,6 +39,7 @@ class TestGhibliMovieRepository(MoviesTestCases):
         self.assertEqual(expected, movies)
 
     def test_find_all_with_two_movies_two_characters(self):
+        """Test that the method find_all when there are more than a movie and people match each one with the film."""
         # arrange
         movie_id_one = MovieId('abc')
         character_one = character_random_with_movie_ids(MovieIds([movie_id_one]))
@@ -65,3 +75,55 @@ class TestGhibliMovieRepository(MoviesTestCases):
         # assert
         expected = Movies([movie_one, movie_two])
         self.assertEqual(expected, movies)
+
+
+class TestCacheMovieRepositoryDecorator(MoviesTestCases):
+    """Test the CacheMovieRepositoryDecorator."""
+
+    def setUp(self) -> None:
+        """Set up the test."""
+        cache.delete('test_blockbuster.movie_repository.find_all')
+
+    def test_find_all_miss_cache(self):
+        """Test that if there is not any value for a key, must miss the cache."""
+        # arrange
+        movie_id = MovieId('123')
+        character = character_random_with_movie_ids(MovieIds([movie_id]))
+        people = People([character])
+        movie = movie_random_with_movie_id_and_people(movie_id, people)
+        expected = Movies([movie])
+        self.movie_repository_mock__find_all(expected)
+
+        # act
+        repository = self.cache_movie_repository_decorator()
+        response = repository.find_all()
+
+        # assert
+        self.assertEqual(expected, response)
+        self.assertEqual(1, self.movie_repository_mock().find_all.call_count)
+
+    def test_find_all_hit_cache(self):
+        """Test that if already exist a value in the cache, must return that value."""
+        # arrange
+        movie_id_one = MovieId('123')
+        movie_id_two = MovieId('789')
+        character = character_random_with_movie_ids(MovieIds([movie_id_one, movie_id_two]))
+        people = People([character])
+
+        movie_one = movie_random_with_movie_id_and_people(movie_id_one, people)
+        not_expected = Movies([movie_one])
+
+        movie_two = movie_random_with_movie_id_and_people(movie_id_two, people)
+        expected = Movies([movie_two])
+
+        self.movie_repository_mock__find_all(not_expected)
+        cache.set('test_blockbuster.movie_repository.find_all', expected, timeout=180)
+
+        # act
+        repository = self.cache_movie_repository_decorator()
+        response = repository.find_all()
+
+        # assert
+        self.assertNotEqual(not_expected, response)
+        self.assertEqual(expected, response)
+        self.assertEqual(0, self.movie_repository_mock().find_all.call_count)

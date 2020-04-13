@@ -1,11 +1,18 @@
+"""Behaviour tests.
+
+Basically we test here in a unit way the behaviour from our application package.
+"""
+
 from movies.domain.models import Movies, People, MovieIds, MovieId
-from movies.tests.movies_test_cases import MoviesTestCases
-from movies.tests.stub.models import character_random_with_movie_ids, movie_random_with_movie_id_and_people
+from movies.tests.stub import character_random_with_movie_ids, movie_random_with_movie_id_and_people
+from movies.tests.test_cases import MoviesTestCases
 
 
 class TestGetMovies(MoviesTestCases):
+    """Test for the use case GetMovies."""
 
     def test_get_movies(self):
+        """Call the use case GetMovies should return a list of movies."""
         # arrange
         movie_id = MovieId('123')
         character = character_random_with_movie_ids(MovieIds([movie_id]))

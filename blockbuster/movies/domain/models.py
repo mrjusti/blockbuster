@@ -1,20 +1,34 @@
+"""Domain models.
+
+Here we can find the entities, value objects and repositories for the application.
+"""
+
 from __future__ import annotations
 
 
 class Movies:
+    """Contain a list with all the Movie objects."""
+
     movies: list
 
     def __init__(self, movies: list):
+        """Init need a list with Movie objects."""
         self.movies = movies
 
     def __eq__(self, other):
-        is_instance_of = isinstance(other, Movies)
-        is_content_eq = self.movies == other.movies
+        """Check if two instances of the class are the same.
 
-        return is_instance_of and is_content_eq
+        We don't check if has the same instance, we actually don't care. If act as a duck, it is a duck.
+        """
+        return self.movies == other.movies
 
 
 class Movie:
+    """Entity movie.
+
+    It is the aggregate root that contain all the data from the film and the people that appear on it.
+    """
+
     people: People
     description: str
     director: str
@@ -26,6 +40,7 @@ class Movie:
 
     def __init__(self, movie_id: MovieId, title: str, description: str, director: str, producer: str, release_date: int,
                  rt_score: int, people: People):
+        """Init the instance for the Movie entity."""
         self.rt_score = rt_score
         self.release_date = release_date
         self.producer = producer
@@ -36,7 +51,10 @@ class Movie:
         self.people = people
 
     def __eq__(self, other):
-        is_instance_of = isinstance(other, Movie)
+        """Check if two instances of the class are the same.
+
+        We don't check if has the same instance, we actually don't care. If act as a duck, it is a duck.
+        """
         is_main_eq = self.title == other.title and self.description == other.description
         is_prod_eq = self.producer == other.producer and self.director == other.director
         is_rel_eq = self.release_date == other.release_date
@@ -45,57 +63,73 @@ class Movie:
         is_id_eq = self.movie_id == other.movie_id
         is_content_eq = is_main_eq and is_prod_eq and is_rel_eq and is_rt_eq and is_people_eq and is_id_eq
 
-        return is_instance_of and is_content_eq
+        return is_content_eq
 
 
 class MovieId:
+    """MovieId it is a value object that represent the identifier for a movie."""
+
     movie_id: str
 
     def __init__(self, movie_id: str):
+        """Init the MovieId."""
         self.movie_id = movie_id
 
     def __eq__(self, other):
-        is_instance_of = isinstance(other, MovieId)
-        is_content_eq = self.movie_id == other.movie_id
+        """Check if two instances of the class are the same.
 
-        return is_instance_of and is_content_eq
+        We don't check if has the same instance, we actually don't care. If act as a duck, it is a duck.
+        """
+        return self.movie_id == other.movie_id
 
 
 class MovieIds:
+    """Contain a list with MovieId."""
+
     movie_ids: list
 
     def __init__(self, movie_ids: list):
+        """Init the MovieIds."""
         self.movie_ids = movie_ids
 
     def raw(self) -> list:
+        """Return a list with only the movie_id strings."""
         return [movie_id.movie_id for movie_id in self.movie_ids]
 
     def __eq__(self, other):
-        is_instance_of = isinstance(other, MovieIds)
-        is_content_eq = self.movie_ids == other.movie_ids
+        """Check if two instances of the class are the same.
 
-        return is_instance_of and is_content_eq
+        We don't check if has the same instance, we actually don't care. If act as a duck, it is a duck.
+        """
+        return self.movie_ids == other.movie_ids
 
 
 class People:
+    """Object that contain a list of Character."""
+
     people: list
 
     def __init__(self, people: list):
+        """Init the people class."""
         self.people = people
 
     def filter_by_movie_id(self, movie_id: MovieId) -> People:
+        """Filter the list of Characters returning only the ones that appear in the MovieId given."""
         characters = [character for character in self.people if movie_id.movie_id in character.movie_ids.raw()]
 
         return People(characters)
 
     def __eq__(self, other):
-        is_instance_of = isinstance(other, People)
-        is_content_eq = self.people == other.people
+        """Check if two instances of the class are the same.
 
-        return is_instance_of and is_content_eq
+        We don't check if has the same instance, we actually don't care. If act as a duck, it is a duck.
+        """
+        return self.people == other.people
 
 
 class Character:
+    """Entity that represent a Character fron a movie."""
+
     movie_ids: MovieIds
     eye_color: str
     character_id: str
@@ -106,6 +140,7 @@ class Character:
 
     def __init__(self, character_id: str, name: str, gender: str, age: int, eye_color: str, hair_color: str,
                  movie_ids: MovieIds):
+        """Init the Character with all the attributes need it."""
         self.movie_ids = movie_ids
         self.eye_color = eye_color
         self.hair_color = hair_color
@@ -115,7 +150,10 @@ class Character:
         self.character_id = character_id
 
     def __eq__(self, other):
-        is_instance_of = isinstance(other, Character)
+        """Check if two instances of the class are the same.
+
+        We don't check if has the same instance, we actually don't care. If act as a duck, it is a duck.
+        """
         is_main_eq = self.name == other.name and self.character_id == other.character_id
         is_movies_eq = self.movie_ids == other.movie_ids
         is_body_eq = self.eye_color == other.eye_color and self.hair_color == other.hair_color
@@ -123,10 +161,12 @@ class Character:
         is_gender_eq = self.gender == other.gender
         is_content_eq = is_main_eq and is_movies_eq and is_body_eq and is_age_eq and is_gender_eq
 
-        return is_instance_of and is_content_eq
+        return is_content_eq
 
 
 class MovieRepository:
+    """It is the interface for the repository that will return all related with the Movie entity."""
 
     def find_all(self) -> Movies:
+        """Return a Movies object."""
         pass
