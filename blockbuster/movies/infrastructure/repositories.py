@@ -5,7 +5,8 @@ Also include any decorator that the repositories need.
 
 from django.core.cache import cache
 
-from movies.domain.models import Movies, People, MovieId, MovieIds, Character, Movie, MovieRepository
+from movies.domain.models import Movies, People, MovieId, MovieIds, Character, Movie, MovieRepository, Title, \
+    Description, Director, Producer, ReleaseDate, RatingScore, CharacterId, Name, Gender, Age, EyeColor, HairColor
 from movies.infrastructure.clients import GhibliClient
 
 
@@ -29,15 +30,25 @@ class GhibliMovieRepository(MovieRepository):
 def _character_factory(character: dict):
     films_ids = [MovieId(film.split('/')[-1]) for film in character['films']]
     movie_ids = MovieIds(films_ids)
-    return Character(character['id'], character['name'], character['gender'], character['age'],
-                     character['eye_color'], character['hair_color'], movie_ids)
+    character_id = CharacterId(character['id'])
+    name = Name(character['name'])
+    gender = Gender(character['gender'])
+    age = Age(character['age'])
+    eye_color = EyeColor(character['eye_color'])
+    hair_color = HairColor(character['hair_color'])
+    return Character(character_id, name, gender, age, eye_color, hair_color, movie_ids)
 
 
 def _movie_factory(movie: dict, people: People):
     movie_id = MovieId(movie['id'])
-    return Movie(movie_id, movie['title'], movie['description'], movie['director'], movie['producer'],
-                 movie['release_date'],
-                 movie['rt_score'], people.filter_by_movie_id(movie_id))
+    title = Title(movie['title'])
+    description = Description(movie['description'])
+    director = Director(movie['director'])
+    producer = Producer(movie['producer'])
+    release_date = ReleaseDate(movie['release_date'])
+    rating_score = RatingScore(movie['rt_score'])
+    return Movie(movie_id, title, description, director, producer, release_date, rating_score,
+                 people.filter_by_movie_id(movie_id))
 
 
 class CacheMovieRepositoryDecorator(MovieRepository):

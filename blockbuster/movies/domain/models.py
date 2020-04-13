@@ -19,16 +19,16 @@ class Movie:
     """
 
     people: People
-    description: str
-    director: str
-    producer: str
-    release_date: int
-    rt_score: int
+    description: Description
+    director: Director
+    producer: Producer
+    release_date: ReleaseDate
+    rt_score: RatingScore
     movie_id: MovieId
-    title: str
+    title: Title
 
-    def __init__(self, movie_id: MovieId, title: str, description: str, director: str, producer: str, release_date: int,
-                 rt_score: int, people: People):
+    def __init__(self, movie_id: MovieId, title: Title, description: Description, director: Director,
+                 producer: Producer, release_date: ReleaseDate, rt_score: RatingScore, people: People):
         """Init the instance for the Movie entity."""
         self.rt_score = rt_score
         self.release_date = release_date
@@ -61,6 +61,42 @@ class MovieId(str):
     pass
 
 
+class Title(str):
+    """Title it is a value object that represent the title for a movie."""
+
+    pass
+
+
+class Description(str):
+    """Description it is a value object that represent the description for a movie."""
+
+    pass
+
+
+class Director(str):
+    """Director it is a value object that represent the director for a movie."""
+
+    pass
+
+
+class Producer(str):
+    """Producer it is a value object that represent the producer for a movie."""
+
+    pass
+
+
+class ReleaseDate(str):
+    """ReleaseDate it is a value object that represent the release date for a movie."""
+
+    pass
+
+
+class RatingScore(str):
+    """RatingScore it is a value object that represent the rating score for a movie."""
+
+    pass
+
+
 class MovieIds(list):
     """Contain a list with MovieId."""
 
@@ -81,15 +117,15 @@ class Character:
     """Entity that represent a Character fron a movie."""
 
     movie_ids: MovieIds
-    eye_color: str
-    character_id: str
-    name: str
-    gender: str
-    age: int
-    hair_color: str
+    eye_color: EyeColor
+    character_id: CharacterId
+    name: Name
+    gender: Gender
+    age: Age
+    hair_color: HairColor
 
-    def __init__(self, character_id: str, name: str, gender: str, age: int, eye_color: str, hair_color: str,
-                 movie_ids: MovieIds):
+    def __init__(self, character_id: CharacterId, name: Name, gender: Gender, age: Age, eye_color: EyeColor,
+                 hair_color: HairColor, movie_ids: MovieIds):
         """Init the Character with all the attributes need it."""
         self.movie_ids = movie_ids
         self.eye_color = eye_color
@@ -112,6 +148,42 @@ class Character:
         is_content_eq = is_main_eq and is_movies_eq and is_body_eq and is_age_eq and is_gender_eq
 
         return is_content_eq
+
+
+class CharacterId(str):
+    """CharacterId it is a value object that represent the character id for a character."""
+
+    pass
+
+
+class Name(str):
+    """Name it is a value object that represent the name for a character."""
+
+    pass
+
+
+class Gender(str):
+    """Gender it is a value object that represent the gender for a character."""
+
+    pass
+
+
+class EyeColor(str):
+    """EyeColor it is a value object that represent the eye color for a character."""
+
+    pass
+
+
+class HairColor(str):
+    """HairColor it is a value object that represent the hair color for a character."""
+
+    pass
+
+
+class Age(str):
+    """Age it is a value object that represent the age for a character."""
+
+    pass
 
 
 class MovieRepository:
