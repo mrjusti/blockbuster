@@ -1,6 +1,9 @@
 # Blockbuster
 
 [![Build Status](https://travis-ci.org/mrjusti/blockbuster.svg?branch=master)](https://travis-ci.org/mrjusti/blockbuster)
+![Tests](https://github.com/mrjusti/blockbuster/workflows/Tests/badge.svg)
+![Lint](https://github.com/mrjusti/blockbuster/workflows/Lint/badge.svg)
+![Coverage](https://github.com/mrjusti/blockbuster/workflows/Coverage/badge.svg)
 
 API that connect with **Studio Ghibli** and return a list of all their movies with all the people that appear in each.
 
