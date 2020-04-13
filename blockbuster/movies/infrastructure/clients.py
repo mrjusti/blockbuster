@@ -1,8 +1,7 @@
 """Module that contain all the client that the app need to connect."""
 
-from typing import Any
-
 import requests
+from typing import Any
 
 
 class GhibliClient:

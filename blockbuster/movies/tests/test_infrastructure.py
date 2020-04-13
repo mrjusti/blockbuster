@@ -4,9 +4,8 @@ Basically we test here our app against infrastructure and third party APIs.
 """
 
 import json
-import os
-
 import jsonschema
+import os
 
 from movies.tests.test_cases import MoviesTestCases
 

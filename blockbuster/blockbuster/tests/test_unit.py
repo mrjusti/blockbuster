@@ -1,11 +1,11 @@
 """Module that make unit test over the middleware of the app."""
 
 import unittest
-from http import HTTPStatus
 from unittest.mock import MagicMock
+from requests import request
+from http import HTTPStatus
 
 from django.http import JsonResponse
-from requests import request
 
 from blockbuster.middleware import JsonExceptions
 from movies.infrastructure.clients import FailedDependencyError

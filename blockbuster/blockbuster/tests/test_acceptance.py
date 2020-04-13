@@ -3,12 +3,12 @@
 Basically these are end to end tests.
 """
 
-from http import HTTPStatus
-
 import django
 
+from http import HTTPStatus
 from django.test import Client
 from django.urls import reverse
+
 from movies.tests.test_cases import MoviesTestCases
 
 
