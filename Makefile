@@ -32,6 +32,11 @@ lint:
 	poetry run mypy blockbuster
 	poetry run bento check --all
 
+lint-ci:
+	poetry run flake8
+	poetry run mypy blockbuster
+	poetry run bento --agree --email=frogos@gmail.com check --all 2>&1 | cat
+
 test: clean-pyc
 	poetry run pytest --verbose --color=yes $(TEST_PATH)
 
